@@ -142,3 +142,7 @@ set_target_properties(onnxruntime PROPERTIES FOLDER "ONNXRuntime")
 if (WINDOWS_STORE)
   target_link_options(onnxruntime PRIVATE /DELAYLOAD:api-ms-win-core-libraryloader-l1-2-1.dll)
 endif()
+
+install(FILES ${PROJECT_SOURCE_DIR}/ONNXRuntime::ONNXRuntimeConfig.cmake
+        ${PROJECT_SOURCE_DIR}/ONNXRuntime::ONNXRuntimeVersion.cmake
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/../cmake)
