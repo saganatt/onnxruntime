@@ -70,6 +70,7 @@ option(onnxruntime_GCC_STATIC_CPP_RUNTIME "Compile for the static libstdc++" OFF
 option(onnxruntime_BUILD_UNIT_TESTS "Build ONNXRuntime unit tests" ON)
 option(onnxruntime_BUILD_CSHARP "Build C# library" OFF)
 option(onnxruntime_USE_PREINSTALLED_EIGEN "Use pre-installed EIGEN. Need to provide eigen_SOURCE_PATH if turn this on." OFF)
+option(onnxruntime_USE_PREINSTALLED_NSYNC "Use pre-installed nsync." OFF)
 option(onnxruntime_BUILD_BENCHMARKS "Build ONNXRuntime micro-benchmarks" OFF)
 
 option(onnxruntime_USE_TVM "Build tvm for code-gen" OFF)
@@ -568,7 +569,7 @@ if(onnxruntime_BUILD_BENCHMARKS)
   endif()
 endif()
 
-if(NOT WIN32 AND NOT onnxruntime_PREFER_SYSTEM_LIB)
+if(NOT WIN32 AND NOT onnxruntime_USE_PREINSTALLED_NSYNC)
   add_subdirectory(${PROJECT_SOURCE_DIR}/external/nsync EXCLUDE_FROM_ALL)
 endif()
 # External dependencies
@@ -1528,5 +1529,3 @@ if (WINDOWS_STORE)
     target_link_options(winml_dll PRIVATE /SAFESEH)
   endif()
 endif()
-
-include(flake8.cmake)
