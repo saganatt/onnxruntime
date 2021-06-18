@@ -9,6 +9,10 @@ jobs:
     clean: true
     submodules: recursive
 
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '12.16.3'
+
   - template: templates/get-docker-image-steps.yml
     parameters:
       Dockerfile: tools/ci_build/github/linux/docker/Dockerfile.manylinux2014_cpu
@@ -67,7 +71,7 @@ jobs:
     inputs:
       scriptPath: $(Build.SourcesDirectory)/tools/ci_build/build.py
       pythonInterpreter: /usr/bin/python3
-      arguments: --build_dir $(Build.BinariesDirectory) --cmake_generator Ninja --config Release --test --skip_submodule_sync --build_shared_lib --parallel --build_wheel --enable_onnx_tests --enable_transformers_tool_test --ctest_path ""
+      arguments: --build_dir $(Build.BinariesDirectory) --cmake_generator Ninja --config Release --test --skip_submodule_sync --build_shared_lib --parallel --build_wheel --enable_onnx_tests --enable_transformers_tool_test --build_nodejs --ctest_path ""
       workingDirectory: /tmp   
 
   - task: CmdLine@2
@@ -83,7 +87,7 @@ jobs:
     inputs:
       scriptPath: $(Build.SourcesDirectory)/tools/ci_build/build.py
       pythonInterpreter: '/usr/bin/python3'
-      arguments: --build_dir $(Build.BinariesDirectory) --cmake_generator Ninja --config Debug --test --skip_submodule_sync --build_shared_lib --parallel --build_wheel --enable_onnx_tests --enable_transformers_tool_test --ctest_path ""
+      arguments: --build_dir $(Build.BinariesDirectory) --cmake_generator Ninja --config Debug --test --skip_submodule_sync --build_shared_lib --parallel --build_wheel --enable_onnx_tests --enable_transformers_tool_test --build_nodejs --ctest_path ""
       workingDirectory: /tmp      
 
   - task: PythonScript@0
