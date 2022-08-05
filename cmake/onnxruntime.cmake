@@ -304,3 +304,7 @@ if(onnxruntime_BUILD_APPLE_FRAMEWORK)
   # link the static library
   add_custom_command(TARGET onnxruntime POST_BUILD COMMAND libtool -static -o ${STATIC_FRAMEWORK_DIR}/onnxruntime *.a WORKING_DIRECTORY ${STATIC_LIB_DIR})
 endif()
+
+install(FILES ${PROJECT_SOURCE_DIR}/ONNXRuntime::ONNXRuntimeConfig.cmake
+        ${PROJECT_SOURCE_DIR}/ONNXRuntime::ONNXRuntimeVersion.cmake
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/../cmake)
