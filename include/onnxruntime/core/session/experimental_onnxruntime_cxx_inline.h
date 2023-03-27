@@ -30,6 +30,10 @@ inline void Session::Run(const std::vector<std::string>& input_names, const std:
   Ort::Session::Run(run_options, input_names_.data(), input_values.data(), input_names_count, output_names_.data(), output_values.data(), output_names_count);
 }
 
+inline void Session::Run(const RunOptions& run_options, const IoBinding& io_binding) {
+  Ort::Session::Run(run_options, io_binding);
+}
+
 inline std::vector<std::string> Session::GetInputNames() const {
   Ort::AllocatorWithDefaultOptions allocator;
   size_t node_count = GetInputCount();

@@ -38,6 +38,7 @@ struct Session : Ort::Session {
            const std::vector<std::string>& output_names,
            std::vector<Ort::Value>& output_values,
            const RunOptions& run_options = RunOptions());
+  void Run(const RunOptions& run_options, const struct IoBinding&);
 
   // convenience methods that simplify common lower-level API calls
   std::vector<std::string> GetInputNames() const;
